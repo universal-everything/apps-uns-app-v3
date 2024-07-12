@@ -21,7 +21,7 @@ export const TestnetWarning = () => {
     setIsClient(true)
   }, [])
 
-  if (isClient && chain && chain.id !== 1)
+  if (isClient && chain && chain.id !== 4201)
     return <Container>You are viewing the UNS app on {chain.name}.</Container>
   return null
 }

@@ -49,7 +49,7 @@ const LargeCheckIcon = styled.svg(
 
 const getAmountFromHex = (hex: `0x${string}`) => formatEther(BigInt(hex))
 const msToDays = (ms: number) => Math.floor(ms / 1000 / 60 / 60 / 24)
-const chainEthTicker = (chainName: string) => `${chainName.slice(0, 2)}ETH`
+const chainEthTicker = (chainName: string) => `${chainName.slice(0, 2)}LYX`
 
 const FaucetBanner = () => {
   const chainName = useChainName()
@@ -83,7 +83,7 @@ const FaucetBanner = () => {
         icon={<EthSVG />}
         onClick={openDialog}
         alert="info"
-        title={`You have unclaimed ${chainName} ETH!`}
+        title={`You have unclaimed ${chainName} LYX!`}
       >
         {t('testnetFaucet.explanation', {
           amount,

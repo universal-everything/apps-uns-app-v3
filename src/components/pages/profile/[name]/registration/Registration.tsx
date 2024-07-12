@@ -152,7 +152,7 @@ const Registration = ({ nameDetails, isLoading }: Props) => {
       dispatch({
         name: 'setProfileData',
         payload: {
-          records: [{ key: 'eth', group: 'address', type: 'addr', value: address! }],
+          records: [{ key: 'lyx', group: 'address', type: 'addr', value: address! }],
           clearRecords: resolverExists,
           resolverAddress: defaultResolverAddress,
         },
@@ -170,9 +170,9 @@ const Registration = ({ nameDetails, isLoading }: Props) => {
 
     // If profile is in queue and reverse record is selected, make sure that eth record is included and is set to address
     if (item.queue.includes('profile') && reverseRecord) {
-      const recordsWithoutEth = item.records.filter((record) => record.key !== 'eth')
+      const recordsWithoutEth = item.records.filter((record) => record.key !== 'lyx')
       const newRecords: ProfileRecord[] = [
-        { key: 'eth', group: 'address', type: 'addr', value: address! },
+        { key: 'lyx', group: 'address', type: 'addr', value: address! },
         ...recordsWithoutEth,
       ]
       dispatch({ name: 'setProfileData', payload: { records: newRecords }, selected })

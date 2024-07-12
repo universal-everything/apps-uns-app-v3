@@ -28,7 +28,7 @@ const defaultData: RegistrationReducerDataItem = {
   name: '',
   isMoonpayFlow: false,
   externalTransactionId: '',
-  chainId: 1,
+  chainId: 4201,
   version: REGISTRATION_REDUCER_DATA_ITEM_VERSION,
 }
 
