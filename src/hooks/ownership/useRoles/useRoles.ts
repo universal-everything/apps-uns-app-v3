@@ -7,7 +7,7 @@ import { useParentBasicName } from '@app/hooks/useParentBasicName'
 
 import { getRoles } from './utils/getRoles'
 
-export type Role = 'owner' | 'manager' | 'eth-record' | 'dns-owner' | 'parent-owner'
+export type Role = 'owner' | 'manager' | 'eth-record' | 'parent-owner'
 
 type BaseOptions = {
   enabled?: boolean
@@ -65,22 +65,16 @@ function useRoles(name: string, options?: Options): Result {
       nameType: nameType.data!,
       owner: details.ownerData?.owner,
       registrant: details.ownerData?.registrant,
-      wrapperOwner: details.wrapperData?.owner,
       ethAddress: details.profile?.address,
-      dnsOwner: details.dnsOwner ?? undefined,
       parentOwner: parentData.ownerData?.owner,
-      parentWrapperOwner: parentData.wrapperData?.owner,
     })
   }, [
     isLoading,
     nameType.data,
     details.ownerData?.owner,
     details.ownerData?.registrant,
-    details.dnsOwner,
     details.profile?.address,
-    details.wrapperData?.owner,
     parentData.ownerData?.owner,
-    parentData.wrapperData?.owner,
   ])
 
   const groupedData = useMemo(() => {

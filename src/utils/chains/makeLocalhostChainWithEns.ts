@@ -22,14 +22,8 @@ export const makeLocalhostChainWithEns = <T extends Chain>(
       ensBaseRegistrarImplementation: {
         address: deploymentAddresses_.BaseRegistrarImplementation,
       },
-      ensDnsRegistrar: {
-        address: deploymentAddresses_.DNSRegistrar,
-      },
       ensEthRegistrarController: {
         address: deploymentAddresses_.ETHRegistrarController,
-      },
-      ensNameWrapper: {
-        address: deploymentAddresses_.NameWrapper,
       },
       ensPublicResolver: {
         address: deploymentAddresses_.PublicResolver,
@@ -39,9 +33,6 @@ export const makeLocalhostChainWithEns = <T extends Chain>(
       },
       ensBulkRenewal: {
         address: deploymentAddresses_.StaticBulkRenewal,
-      },
-      ensDnssecImpl: {
-        address: deploymentAddresses_.DNSSECImpl,
       },
     },
     subgraphs: {

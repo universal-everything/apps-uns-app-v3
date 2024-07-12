@@ -276,7 +276,7 @@ const MainMenu = ({ setCurrentView }: { setCurrentView: (view: 'main' | 'languag
               size="extraSmall"
               fiat={userConfig.fiat}
               checked={userConfig.currency === 'fiat'}
-              onChange={(e) => setCurrency(e.target.checked ? 'fiat' : 'eth')}
+              onChange={(e) => setCurrency(e.target.checked ? 'fiat' : 'lyx')}
             />
           </div>
         </SettingsItem>

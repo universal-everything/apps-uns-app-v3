@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+// TODO: replace urls to point to something specific to UNS?
 const SUPPORT_LINKS = {
   homoglyphs: 'https://support.ens.domains/en/articles/7901658-homoglyphs',
   namesAndSubnames: 'https://support.ens.domains/en/articles/7902188-managing-a-name#h_d83b3ffcb0',
@@ -7,10 +8,6 @@ const SUPPORT_LINKS = {
   resolver: 'https://support.ens.domains/en/articles/7902188-managing-a-name#h_1ef2545a3f',
   fuses: 'https://support.ens.domains/en/articles/7902567-fuses',
   primaryName: 'https://support.ens.domains/en/articles/7902188-managing-a-name#h_b2baf0c02b',
-  nameWrapper: 'https://support.ens.domains/en/articles/7902188-managing-a-name#h_cae4f1dea6',
-  dnsNames: 'https://support.ens.domains/en/collections/4027734-dns-names',
-  gaslessDnssec:
-    'https://support.ens.domains/en/articles/8834820-offchain-gasless-dnssec-names-in-ens#h_b92a64180f',
   owner: undefined,
   'owner-emancipated': undefined,
   'parent-owner': undefined,

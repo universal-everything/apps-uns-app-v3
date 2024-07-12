@@ -8,7 +8,7 @@ export const normalizeCoinAddress = ({
   address?: string | null
 }): string => {
   if (!address) return ''
-  if (coin === 'eth' || coin === 'ETH' || coin === 60) {
+  if (coin === 'lyx' || coin === 'LYX' || coin === 60) {
     try {
       return getAddress(address)
     } catch {

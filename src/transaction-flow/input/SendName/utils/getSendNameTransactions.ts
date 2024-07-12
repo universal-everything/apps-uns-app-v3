@@ -35,7 +35,7 @@ export const getSendNameTransactions = ({
       ? createTransactionItem('resetProfileWithRecords', {
           name,
           records: {
-            coins: [{ coin: 'ETH', value: recipient }],
+            coins: [{ coin: 'LYX', value: recipient }],
           },
           resolverAddress,
         })

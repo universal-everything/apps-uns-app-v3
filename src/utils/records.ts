@@ -110,7 +110,7 @@ export const checkProfileRecordsEqual = (a: Profile, b: Profile): boolean => {
 export const makeEthRecordItem = (address: Address): AddressRecord => {
   return {
     id: 60,
-    name: 'ETH',
+    name: 'LYX',
     value: address,
   }
 }

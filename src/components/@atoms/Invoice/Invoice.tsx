@@ -47,10 +47,10 @@ type Props = {
   unit?: CurrencyDisplay
 }
 
-export const Invoice = ({ totalLabel = 'Estimated total', unit = 'eth', items }: Props) => {
+export const Invoice = ({ totalLabel = 'Estimated total', unit = 'lyx', items }: Props) => {
   const filteredItems = items
     .map(({ value, bufferPercentage }) =>
-      value && unit === 'eth' && bufferPercentage ? (value * bufferPercentage) / 100n : value,
+      value && unit === 'lyx' && bufferPercentage ? (value * bufferPercentage) / 100n : value,
     )
     .filter((x): x is bigint => !!x)
   const total = filteredItems.reduce((a, b) => a + b, 0n)

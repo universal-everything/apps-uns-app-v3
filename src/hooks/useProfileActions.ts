@@ -16,7 +16,6 @@ import { useAccountSafely } from './account/useAccountSafely'
 import { useExpiry } from './ensjs/public/useExpiry'
 import { useOwner } from './ensjs/public/useOwner'
 import { usePrimaryName } from './ensjs/public/usePrimaryName'
-import { useWrapperData } from './ensjs/public/useWrapperData'
 import { useGetPrimaryNameTransactionFlowItem } from './primary/useGetPrimaryNameTransactionFlowItem'
 import { useResolverStatus } from './resolver/useResolverStatus'
 import { useProfile } from './useProfile'
@@ -51,7 +50,6 @@ export const useProfileActions = ({ name, enabled: enabled_ = true }: Props) => 
 
   const { data: profile, isLoading: isProfileLoading } = useProfile({ name, enabled })
   const { data: ownerData, isLoading: isOwnerLoading } = useOwner({ name, enabled })
-  const { data: wrapperData, isLoading: isWrapperDataLoading } = useWrapperData({ name, enabled })
   const { data: expiryData, isLoading: isExpiryLoading } = useExpiry({ name, enabled })
   const expiryDate = expiryData?.expiry?.date
 
@@ -77,18 +75,14 @@ export const useProfileActions = ({ name, enabled: enabled_ = true }: Props) => 
       owner: ownerData?.owner === address,
       registrant: ownerData?.registrant === address,
       resolvedAddress: profile?.address === address,
-      wrappedOwner: wrapperData?.owner === address,
     },
     expiryDate,
-    fuses: wrapperData?.fuses || null,
+    fuses: null,
     isMigrated: profile?.isMigrated !== false,
   })
 
-  const isWrapped = !!wrapperData
-
   const getPrimaryNameTransactionFlowItem = useGetPrimaryNameTransactionFlowItem({
     address,
-    isWrapped,
     profileAddress: profile?.address,
     resolverAddress: profile?.resolverAddress,
     resolverStatus,
@@ -109,7 +103,6 @@ export const useProfileActions = ({ name, enabled: enabled_ = true }: Props) => 
     isAbilitiesLoading ||
     isProfileLoading ||
     isOwnerLoading ||
-    isWrapperDataLoading ||
     isExpiryLoading ||
     isPrimaryNameLoading ||
     isResolverStatusLoading ||
@@ -167,6 +160,7 @@ export const useProfileActions = ({ name, enabled: enabled_ = true }: Props) => 
         skip2LDEth: true,
         loading: hasGraphErrorLoading,
       }
+      // TODO: delete as related to wrapper?
       if (abilities.canDeleteRequiresWrap) {
         const transactions: GenericTransaction[] = [
           createTransactionItem('transferSubname', {

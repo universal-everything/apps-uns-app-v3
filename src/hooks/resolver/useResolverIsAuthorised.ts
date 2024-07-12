@@ -8,7 +8,6 @@ import { useProfile } from '@app/hooks/useProfile'
 import { emptyAddress } from '@app/utils/constants'
 import { getIsCachedData } from '@app/utils/getIsCachedData'
 
-import { useIsWrapped } from '../useIsWrapped'
 import { useResolverHasInterfaces } from '../useResolverHasInterfaces'
 
 type UseResolverIsAuthorisedParameters = {
@@ -30,13 +29,6 @@ export const useResolverIsAuthorised = ({
     enabled,
   })
   const resolverAddress = profile.data?.resolverAddress
-
-  const {
-    data: isWrapped,
-    isLoading: isWrappedLoading,
-    isFetching: isWrappedFetching,
-    isCachedData: isWrappedCachedData,
-  } = useIsWrapped({ name, enabled })
 
   const isDependentDataLoading = profile.isLoading || connector.isLoading
 
@@ -77,11 +69,7 @@ export const useResolverIsAuthorised = ({
     isFetching: isEstimateGasFetching,
   } = estimateGasQuery
 
-  const isLoading =
-    isDependentDataLoading ||
-    isResolverHasInterfacesLoading ||
-    isEstimateGasLoading ||
-    isWrappedLoading
+  const isLoading = isDependentDataLoading || isResolverHasInterfacesLoading || isEstimateGasLoading
 
   const data = useMemo(() => {
     if (!enabled || isLoading) return undefined
@@ -89,7 +77,7 @@ export const useResolverIsAuthorised = ({
     if (knownResolverData)
       return {
         isValid: true,
-        isAuthorised: isWrapped ? knownResolverData.isNameWrapperAware : true,
+        isAuthorised: true,
       }
     return {
       isValid: true,
@@ -100,7 +88,6 @@ export const useResolverIsAuthorised = ({
     isLoading,
     resolverSupportsMultiAddress,
     knownResolverData,
-    isWrapped,
     isEstimateGasError,
     estimateGasData,
   ])
@@ -108,14 +95,9 @@ export const useResolverIsAuthorised = ({
   return {
     data,
     isLoading,
-    isFetching:
-      profile.isFetching ||
-      isResolverHasInterfacesFetching ||
-      isEstimateGasFetching ||
-      isWrappedFetching,
+    isFetching: profile.isFetching || isResolverHasInterfacesFetching || isEstimateGasFetching,
     isCachedData:
       profile.isCachedData ||
-      isWrappedCachedData ||
       isResolverHasInterfacesCachedData ||
       getIsCachedData(estimateGasQuery),
   }

@@ -51,14 +51,11 @@ export const generateFuseSetBlocks = (
   if (!nameHistory) return { blocksNeeded: new Set<bigint>(), fuseSetBlocks: [] }
   const { domainEvents } = nameHistory
 
-  let hasWrappedEvent = false
   const fusesSetMap: Map<AnyFuseKey, bigint> = new Map()
 
-  for (let i = domainEvents.length - 1; i >= 0 && !hasWrappedEvent; i -= 1) {
+  for (let i = domainEvents.length - 1; i >= 0; i -= 1) {
     const reference = domainEvents[i]
     switch (reference.type) {
-      case 'NameWrapped':
-        hasWrappedEvent = true
       // eslint-disable-next-line no-fallthrough
       case 'FusesSet': {
         const decodedFuses = decodeFuses(reference.fuses)
@@ -74,7 +71,6 @@ export const generateFuseSetBlocks = (
         break
     }
   }
-  if (!hasWrappedEvent) return { blocksNeeded: new Set<bigint>(), fuseSetBlocks: [] }
   return {
     blocksNeeded: new Set(fusesSetMap.values()),
     fuseSetBlocks: [...fusesSetMap.entries()].map(([f, b]) => [f, Number(b)]),

@@ -111,8 +111,8 @@ export type ExtractTransactionData<TTransaction> = TTransaction extends Transact
 export type UserTheme = 'light' | 'dark'
 // fiat is placeholder for now, not actually implemented
 export type UserFiat = 'usd' | 'eur' | 'gbp' | 'aud'
-export type UserCurrency = 'eth' | 'fiat'
-export type CurrencyDisplay = UserFiat | 'eth'
+export type UserCurrency = 'lyx' | 'fiat'
+export type CurrencyDisplay = UserFiat | 'lyx'
 
 export type UserConfig = {
   theme: UserTheme

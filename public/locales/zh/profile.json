@@ -227,7 +227,7 @@
           "CANNOT_UNWRAP": "可以解除包装",
           "PARENT_CANNOT_CONTROL": "父名称可以控制",
           "CAN_EXTEND_EXPIRY": "不能延长有效期",
-          "IS_DOT_ETH": "不是 .eth"
+          "IS_DOT_ETH": "不是 .lyx"
         }
       },
       "ownership": {

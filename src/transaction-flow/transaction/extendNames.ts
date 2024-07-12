@@ -39,7 +39,7 @@ const displayItems = (
       ns: 'transactionFlow',
       value: makeDisplay({
         value: calculateValueWithBuffer(rentPrice),
-        symbol: 'ETH',
+        symbol: 'LYX',
       }),
     }),
   },

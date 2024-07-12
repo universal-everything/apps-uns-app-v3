@@ -525,7 +525,7 @@ const Pricing = ({
       ...registrationData,
       reverseRecord,
       years,
-      records: [{ key: 'ETH', value: resolverAddress, type: 'addr', group: 'address' }],
+      records: [{ key: 'LYX', value: resolverAddress, type: 'addr', group: 'address' }],
       clearRecords: resolverExists,
       resolverAddress,
     },

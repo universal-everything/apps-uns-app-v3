@@ -323,7 +323,7 @@ export const SearchInput = ({
     }
     if (selectedItem.type === 'name') {
       const labels = selectedItem.value.split('.')
-      const isDotETH = labels.length === 2 && labels[1] === 'eth'
+      const isDotETH = labels.length === 2 && labels[1] === 'lyx'
       if (isDotETH && labels[0].length < 3) {
         return
       }
