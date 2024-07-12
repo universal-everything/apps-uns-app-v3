@@ -5,7 +5,6 @@ export const RESOLVER_INTERFACE_IDS = {
   AbiResolver: '0x2203ab56',
   TextResolver: '0x59d1d43c',
   ContentHashResolver: '0xbc1c58d1',
-  DnsRecordResolver: '0xa8fa5682',
   InterfaceResolver: '0x01ffc9a7',
   ExtendedResolver: '0x9061b923',
   VersionableResolver: '0xd700ff33',

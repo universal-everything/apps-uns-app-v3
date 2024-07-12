@@ -12,13 +12,12 @@ type UseWrapperApprovedForAllParameters = {
 export const useWrapperApprovedForAll = ({
   address,
   isSubname,
-  canBeWrapped,
   enabled = true,
 }: UseWrapperApprovedForAllParameters) => {
   return useApprovedForAll({
     contract: 'ensRegistry',
     address,
-    operatorContract: 'ensNameWrapper',
-    enabled: enabled && isSubname && canBeWrapped,
+    operatorContract: 'ensRegistry',
+    enabled: enabled && isSubname,
   })
 }

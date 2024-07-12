@@ -16,9 +16,7 @@ export const clearRelevantNameQueriesFromRegisterOrImport = ({
   const namesFromTransactions = updatedTransactions.reduce<string[]>((acc, transaction) => {
     if (
       transaction.status === 'confirmed' &&
-      (transaction.action === 'registerName' ||
-        transaction.action === 'importDnsName' ||
-        transaction.action === 'claimDnsName')
+      (transaction.action === 'registerName' || transaction.action === 'claimDnsName')
     ) {
       const name = transaction.key?.match(/-(.*)-/)?.[1]
       if (name) acc.push(name)

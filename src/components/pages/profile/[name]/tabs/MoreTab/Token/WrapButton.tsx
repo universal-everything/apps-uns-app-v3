@@ -17,12 +17,11 @@ import BaseWrapButton from './BaseWrapButton'
 
 type Props = {
   name: string
-  canBeWrapped: boolean
   ownerData: GetOwnerReturnType | undefined
   profile: Profile | undefined
 }
 
-const WrapButton = ({ name, ownerData, profile, canBeWrapped }: Props) => {
+const WrapButton = ({ name, ownerData, profile }: Props) => {
   const { t } = useTranslation('profile')
 
   const { data: hasGraphError, isLoading: hasGraphErrorLoading } = useHasGraphError()

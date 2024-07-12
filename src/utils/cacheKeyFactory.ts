@@ -57,8 +57,6 @@ export const useQueryKeys = () => {
     blockTimestamp: [...globalKeys, 'blockTimestamp'],
     currentBlockTimestamp: [...globalKeys, 'currentBlockTimestamp'],
     decryptName: (name: string) => [...globalKeys, 'graph', name, 'decryptName'],
-    getDNSOwner: (name: string) => [...globalKeys, name, 'getDNSOwner'],
-    getDNSProof: (name: string) => [...globalKeys, name, 'getDNSProof'],
     estimateGasLimitForTransactions: (transactions: TransactionItem[], extraKeys: string[]) => [
       ...globalKeys,
       ...transactions,
@@ -76,7 +74,6 @@ export const useQueryKeys = () => {
     faucet: (localAddress?: string) => [...globalKeys, localAddress, 'faucet'],
     getABI: (name: string) => [...globalKeys, name, 'getABI'],
     getHistory: (name: string) => [...globalKeys, 'graph', name, 'getHistory'],
-    getWrapperData: (name: string) => [...globalKeys, name, 'getWrapperData'],
     hasSubnames: (name: string) => [...globalKeys, 'graph', name, 'hasSubnames'],
     subnames: (name: string, orderBy = '', orderDirection = '', search = '') => [
       ...globalKeys,
@@ -165,11 +162,6 @@ export const useQueryKeys = () => {
       'getOwner',
       validationName,
       'validateSubnameLabel',
-    ],
-    wrapperApprovedForAll: (localAddress: string) => [
-      ...globalKeys,
-      localAddress,
-      'wrapperApprovedForAll',
     ],
     isSafeApp: (connectorId: string | undefined) => [...globalKeys, connectorId, 'isSafeApp'],
     simpleSearch: (query: string) => [...globalKeys, 'simpleSearch', query],

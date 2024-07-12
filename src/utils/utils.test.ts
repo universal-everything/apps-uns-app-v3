@@ -110,24 +110,6 @@ describe('makeEtherscanLink', () => {
   })
 })
 
-describe('checkDNSName', () => {
-  it('should return true when name is a DNS name', () => {
-    const name = 'test.com'
-    const result = checkDNSName(name)
-    expect(result).toEqual(true)
-  })
-  it('should return false when name is undefined', () => {
-    const name = undefined
-    const result = checkDNSName(name as any)
-    expect(result).toEqual(false)
-  })
-  it('should return false when name is a .eth name', () => {
-    const name = 'test.eth'
-    const result = checkDNSName(name)
-    expect(result).toEqual(false)
-  })
-})
-
 describe('checkETH2LDFromName', () => {
   it('should return true when name is a .eth name', () => {
     const name = 'test.eth'

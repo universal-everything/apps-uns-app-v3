@@ -12,7 +12,6 @@ import {
   checkProfileRecordsEqual,
   RecordMatch,
 } from '@app/utils/records'
-import { getResolverWrapperAwareness } from '@app/utils/utils'
 
 type UseResolverStatusParameters = {
   name: string
@@ -82,7 +81,6 @@ export const useResolverStatus = ({
       hasLatestResolver: false,
       hasValidResolver: false,
       isAuthorized: false,
-      isNameWrapperAware: false,
       hasProfile: false,
       hasMigratedProfile: false,
       isMigratedProfileEqual: false,
@@ -93,9 +91,6 @@ export const useResolverStatus = ({
       ...defaultResults,
       hasResolver: !!profileResolverAddress && profileResolverAddress !== emptyAddress,
       hasLatestResolver: resolverType.data?.type === 'latest',
-      isNameWrapperAware: profileResolverAddress
-        ? getResolverWrapperAwareness({ resolverAddress: profileResolverAddress, chainId })
-        : false,
       hasProfile: profileHasRecords(profile),
     }
 

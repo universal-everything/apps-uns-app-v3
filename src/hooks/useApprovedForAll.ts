@@ -8,7 +8,7 @@ import { useContractAddress } from './chain/useContractAddress'
 type UseApprovedForAllParameters = {
   contract: keyof SupportedChain['contracts']
   address: Address
-  operatorContract: keyof SupportedChain['contracts'] | 'ensDnsRegistrar'
+  operatorContract: keyof SupportedChain['contracts']
   enabled?: boolean
 }
 

@@ -6,7 +6,6 @@ import { usePrimaryName } from '@app/hooks/ensjs/public/usePrimaryName'
 import { useInitial } from '@app/hooks/useInitial'
 import { useNameDetails } from '@app/hooks/useNameDetails'
 import { useRouterWithHistory } from '@app/hooks/useRouterWithHistory'
-import { checkDNS2LDFromName } from '@app/utils/utils'
 
 export default function Page() {
   const router = useRouterWithHistory()
@@ -24,13 +23,7 @@ export default function Page() {
 
   // Skip graph for for initial load and router redirect
   const nameDetails = useNameDetails({ name })
-  const {
-    isBasicLoading,
-    isProfileLoading,
-    isDnsOwnerLoading,
-    registrationStatus,
-    gracePeriodEndDate,
-  } = nameDetails
+  const { isBasicLoading, isProfileLoading, registrationStatus, gracePeriodEndDate } = nameDetails
 
   const isLoading =
     isBasicLoading || isProfileLoading || primary.isLoading || initial || !router.isReady
@@ -49,11 +42,11 @@ export default function Page() {
     return null
   }
 
-  const isDns = checkDNS2LDFromName(name)
-  if (isDns && registrationStatus === 'notImported' && !isBasicLoading && !isDnsOwnerLoading) {
-    router.push(`/import/${name}`)
-    return null
-  }
+  // const isDns = checkDNS2LDFromName(name)
+  // if (isDns && registrationStatus === 'notImported' && !isBasicLoading && !isDnsOwnerLoading) {
+  //   router.push(`/import/${name}`)
+  //   return null
+  // }
 
   return (
     <ProfileContent

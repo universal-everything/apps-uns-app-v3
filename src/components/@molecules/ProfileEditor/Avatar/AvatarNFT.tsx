@@ -302,11 +302,6 @@ export const AvatarNFT = ({
               getSupportedChainContractAddress({
                 client,
                 contract: 'ensBaseRegistrarImplementation',
-              }) &&
-            nft.contract.address !==
-              getSupportedChainContractAddress({
-                client,
-                contract: 'ensNameWrapper',
               }),
         ),
       }

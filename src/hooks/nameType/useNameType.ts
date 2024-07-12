@@ -12,7 +12,6 @@ export const useNameType = (name: string, options: Options = {}) => {
   const enabled = options.enabled ?? true
 
   const basicName = useBasicName({ name, enabled })
-  const nameWrapperAddress = useContractAddress({ contract: 'ensNameWrapper' })
 
   const { isLoading, isCachedData } = basicName
 
@@ -21,20 +20,10 @@ export const useNameType = (name: string, options: Options = {}) => {
     return getNameType({
       name,
       ownerData: basicName.ownerData!,
-      wrapperData: basicName.wrapperData!,
       pccExpired: basicName.pccExpired,
       registrationStatus: basicName.registrationStatus,
-      nameWrapperAddress,
     })
-  }, [
-    isLoading,
-    name,
-    basicName.ownerData,
-    basicName.wrapperData,
-    basicName.pccExpired,
-    basicName.registrationStatus,
-    nameWrapperAddress,
-  ])
+  }, [isLoading, name, basicName.ownerData, basicName.pccExpired, basicName.registrationStatus])
 
   return {
     data,

@@ -20,7 +20,6 @@ import {
 
 type Inputs = {
   address?: Address
-  isWrapped?: boolean
   reverseRegistryName?: string
   profileAddress?: string
   resolverAddress?: string
@@ -32,7 +31,7 @@ type Options = {
 }
 
 export const useGetPrimaryNameTransactionFlowItem = (
-  { address, isWrapped, profileAddress, resolverAddress, resolverStatus }: Inputs,
+  { address, profileAddress, resolverAddress, resolverStatus }: Inputs,
   options: Options = {},
 ) => {
   const { t } = useTranslation('transactionFlow')
@@ -77,7 +76,7 @@ export const useGetPrimaryNameTransactionFlowItem = (
         transactions.unshift(
           createTransactionItem('updateResolver', {
             name,
-            contract: isWrapped ? 'nameWrapper' : 'registry',
+            contract: 'registry',
             resolverAddress: latestResolverAddress,
           }),
         )
@@ -121,7 +120,6 @@ export const useGetPrimaryNameTransactionFlowItem = (
     }
   }, [
     isActive,
-    isWrapped,
     latestResolverAddress,
     address,
     profileAddress,

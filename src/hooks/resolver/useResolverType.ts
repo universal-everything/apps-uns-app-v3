@@ -5,7 +5,6 @@ import { getKnownResolverData } from '@app/constants/resolverAddressData'
 import { useRegistryResolver } from '@app/hooks/resolver/useRegistryResolver'
 import { emptyAddress } from '@app/utils/constants'
 
-import { useIsWrapped } from '../useIsWrapped'
 import { useProfile } from '../useProfile'
 
 type UseResolverTypeParameters = {
@@ -33,12 +32,6 @@ export const useResolverType = ({ name, enabled: enabled_ = true }: UseResolverT
 
   const chainId = useChainId()
 
-  const isWrappedQuery = useIsWrapped({
-    name,
-    enabled,
-  })
-  const { data: isWrapped } = isWrappedQuery
-
   const profile = useProfile({
     name,
     enabled,
@@ -50,7 +43,7 @@ export const useResolverType = ({ name, enabled: enabled_ = true }: UseResolverT
     enabled,
   })
 
-  const isLoading = isWrappedQuery.isLoading || profile.isLoading || registryResolver.isLoading
+  const isLoading = profile.isLoading || registryResolver.isLoading
   const { isFetching } = registryResolver
   const { isError } = registryResolver
 
@@ -62,14 +55,11 @@ export const useResolverType = ({ name, enabled: enabled_ = true }: UseResolverT
     if (!knownResolverData) {
       return { type: 'custom', isWildcard, tone: 'greySecondary' } as const
     }
-    if (
-      (isWrapped && !knownResolverData.isNameWrapperAware) ||
-      knownResolverData.tag === 'outdated'
-    )
+    if (!knownResolverData.isNameWrapperAware || knownResolverData.tag === 'outdated')
       return { type: 'outdated', isWildcard, tone: 'redSecondary' } as const
     if (knownResolverData.tag === 'latest')
       return { type: 'latest', isWildcard, tone: 'greenSecondary' } as const
-  }, [resolverAddress, isWrapped, enabled, chainId, isLoading, isWildcard])
+  }, [resolverAddress, enabled, chainId, isLoading, isWildcard])
 
   return { data, isLoading, isFetching, isError }
 }

@@ -107,7 +107,7 @@ export const ImportTransaction = ({
 
   const { data: gasPrice } = useGasPrice()
   const { userConfig, setCurrency } = useUserConfig()
-  const currencyDisplay = userConfig.currency === 'fiat' ? userConfig.fiat : 'eth'
+  const currencyDisplay = userConfig.currency === 'fiat' ? userConfig.fiat : 'lyx'
 
   const {
     data: dnsOwner,
@@ -130,14 +130,10 @@ export const ImportTransaction = ({
   const { data: isApprovedForAll, isFetched: isApprovalFetched } = useApprovedForAll({
     contract: 'ensPublicResolver',
     address: selected.address!,
-    operatorContract: 'ensDnsRegistrar',
     enabled: dnsOwnerStatus === 'matching',
   })
 
   const publicResolverAddress = useContractAddress({ contract: 'ensPublicResolver' })
-  const dnsRegistrarAddress = useContractAddress({
-    contract: 'ensDnsRegistrar',
-  })
 
   const requiresApproval =
     dnsOwnerStatus === 'matching' && isApprovedForAll === false && isApprovalFetched
@@ -151,7 +147,6 @@ export const ImportTransaction = ({
         dnsOwnerStatus,
         requiresApproval,
         publicResolverAddress,
-        dnsRegistrarAddress,
       }),
     [
       dnsOwnerStatus,
@@ -160,7 +155,6 @@ export const ImportTransaction = ({
       dnsImportData,
       requiresApproval,
       publicResolverAddress,
-      dnsRegistrarAddress,
     ],
   )
 
@@ -223,7 +217,7 @@ export const ImportTransaction = ({
           <CurrencyToggle
             size="small"
             checked={userConfig.currency === 'fiat'}
-            onChange={(e) => setCurrency(e.target.checked ? 'fiat' : 'eth')}
+            onChange={(e) => setCurrency(e.target.checked ? 'fiat' : 'lyx')}
           />
         </OptionBar>
         <InvoiceItemBox>

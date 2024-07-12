@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { checkETH2LDFromName } from '@app/utils/utils'
 
 import { useAccountSafely } from '../account/useAccountSafely'
-import { useContractAddress } from '../chain/useContractAddress'
 import { useResolverIsAuthorised } from '../resolver/useResolverIsAuthorised'
 import { useBasicName } from '../useBasicName'
 import { useHasSubnames } from '../useHasSubnames'
@@ -20,7 +19,7 @@ type ExtendAbilities = {
 
 export type DeleteAbilities = {
   canDelete: boolean
-  canDeleteContract?: 'nameWrapper' | 'registry'
+  canDeleteContract?: 'registry'
   canDeleteRequiresWrap?: boolean
   canDeleteMethod?: 'setRecord' | 'setSubnodeOwner'
   isPCCBurned?: boolean
@@ -49,11 +48,11 @@ export type SendAbilities = {
   canSendManager: boolean
   sendNameFunctionCallDetails?: {
     sendOwner?: {
-      contract: 'registry' | 'nameWrapper' | 'registrar'
+      contract: 'registry' | 'registrar'
       method: 'safeTransferFrom'
     }
     sendManager?: {
-      contract: 'registry' | 'nameWrapper' | 'registrar'
+      contract: 'registry' | 'registrar'
       method: 'safeTransferFrom' | 'reclaim' | 'setOwner' | 'setSubnodeOwner'
     }
   }
@@ -107,8 +106,6 @@ export const useAbilities = ({ name, enabled = true }: UseAbilitiesParameters) =
   // useHasSubnames checks internally if name exists & if it is subname before it enables itself
   const hasSubnamesData = useHasSubnames(name)
 
-  const nameWrapperAddress = useContractAddress({ contract: 'ensNameWrapper' })
-
   const isLoading =
     !address ||
     basicNameData.isLoading ||
@@ -137,7 +134,6 @@ export const useAbilities = ({ name, enabled = true }: UseAbilitiesParameters) =
           address,
           basicNameData,
           hasAuthorisedResolver: resolverAuthorisation.data?.isAuthorised,
-          nameWrapperAddress,
         }),
         ...getDeleteAbilities({
           name,
@@ -159,10 +155,8 @@ export const useAbilities = ({ name, enabled = true }: UseAbilitiesParameters) =
       name,
       address,
       basicNameData.ownerData,
-      basicNameData.wrapperData,
       basicNameData.pccExpired,
       parentBasicNameData.ownerData,
-      parentBasicNameData.wrapperData,
       isLoading,
       resolverAuthorisation.data?.isAuthorised,
       hasSubnamesData.data,
